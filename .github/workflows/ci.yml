@@ -27,7 +27,7 @@ jobs:
         run: |
           grep -q '<html' index.html
           grep -q 'href="style.css"' index.html
-          grep -q 'Rimon' index.html
+          grep -q 'Emon' index.html
 
 
 
