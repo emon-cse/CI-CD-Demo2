@@ -1,0 +1,40 @@
+name: HTML-CSS CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate static website
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check required files exist
+        run: |
+          test -f index.html
+          test -f style.css
+
+      - name: Check HTML references the stylesheet
+        run: |
+          grep -q '<html' index.html
+          grep -q 'href="style.css"' index.html
+
+      - name: Check basic HTML structure
+        run: |
+          grep -q '<head>' index.html
+          grep -q '<body>' index.html
+          grep -q '</html>' index.html
+
+      - name: Check CSS is not empty
+        run: |
+          test -s style.css
+          grep -q 'box-sizing' style.css
