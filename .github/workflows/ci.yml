@@ -25,8 +25,11 @@ jobs:
 
       - name: Check HTML references the stylesheet
         run: |
-          grep -q '<jtml' index.html
+          grep -q '<html' index.html
           grep -q 'href="style.css"' index.html
+          grep -q 'Emon' index.html
+
+
 
       - name: Check basic HTML structure
         run: |
